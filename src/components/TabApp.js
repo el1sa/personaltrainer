@@ -1,6 +1,8 @@
 import React, { useState} from 'react';
 import Tabs from '@mui/material/Tabs';
-import Tab  from '@ mui/material/Tab';
+import Tab  from '@mui/material/Tab';
+import Customerlist from './Customerlist';
+import Traininglist from './Traininglist';
 
 function TabApp() {
 
@@ -16,6 +18,8 @@ function TabApp() {
             <Tab value="Customerlist" label= 'Customers'/>
             <Tab value="Traininglist" label='Trainings'/>
         </Tabs>
+        {value === 'Customerlist' && <div><Customerlist /></div>}
+        {value === 'Traininglist' && <div><Traininglist /></div>}
     </div>
     );
 }

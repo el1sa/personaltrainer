@@ -25,7 +25,7 @@ function Traininglist() {
         <div className="ag-theme-material" style={{marginTop: 20, height: 600, width: '80%', margin: 'auto'}}>
         <AgGridReact 
             rowData={trainings}
-            columnsDefs={columns}
+            columnDefs={columns}
         />
         </div>
     );
