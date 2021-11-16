@@ -14,13 +14,13 @@ function Customerlist() {
     }, []);
 
     const columns = [
-        {field: 'firstname'},
-        {field: 'lastname'},
-        {field: 'streetaddress'},
-        {field: 'postcode'},
-        {field: 'city'},
-        {field: 'email'},
-        {field: 'phone'}
+        {field: 'firstname', sortable: true, filter: true},
+        {field: 'lastname', sortable: true, filter: true},
+        {field: 'streetaddress', sortable: true, filter: true},
+        {field: 'postcode', sortable: true, filter: true},
+        {field: 'city', sortable: true, filter: true, width: 120},
+        {field: 'email', sortable: true, filter: true},
+        {field: 'phone', sortable: true, filter: true}
         
     ]
 
@@ -30,6 +30,9 @@ function Customerlist() {
         <AgGridReact 
             rowData={customers}
             columnDefs={columns}
+            pagination={true}
+            paginationPageSize={10}
+            suppressCellSelection={true}
         />
         </div>
     );

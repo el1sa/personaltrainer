@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import { format } from 'date-fns'
 
 function Traininglist() {
     const [trainings, setTrainings] = useState([]);
@@ -14,9 +15,9 @@ function Traininglist() {
     }, []);
 
     const columns = [
-        {field: 'date'},
-        {field: 'duration'},
-        {field: 'activity'}
+        {field: 'date', sortable: true, filter: true},
+        {field: 'duration', sortable: true, filter: true, width: 120},
+        {field: 'activity', sortable: true, filter: true}
         
     ]
     
@@ -26,6 +27,9 @@ function Traininglist() {
         <AgGridReact 
             rowData={trainings}
             columnDefs={columns}
+            pagination={true}
+            paginationPageSize={10}
+            suppressCellSelection={true}
         />
         </div>
     );
