@@ -6,10 +6,14 @@ import AddCustomer from './AddCustomer';
 import { Snackbar } from '@mui/material';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditCustomer from './EditCustomer';
+import AddTraining from './AddTraining';
 
 
 function Customerlist() {
     const [customers, setCustomers] = useState([]);
+
+    const [trainings, setTrainings] = useState([]);
 
     const [open, setOpen] = React.useState(false);
 
@@ -27,6 +31,13 @@ function Customerlist() {
         fetch('https://customerrest.herokuapp.com/api/customers')
         .then(response => response.json())
         .then(data => setCustomers(data.content))
+        .catch(err => console.error(err))
+    }
+
+    const fetchTrainings = () => {
+        fetch('https://customerrest.herokuapp.com/api/trainings')
+        .then(response => response.json())
+        .then(data => setTrainings(data.content))
         .catch(err => console.error(err))
     }
 
@@ -58,6 +69,32 @@ function Customerlist() {
         }
     }
 
+    const editCustomer = (url, updateCustomer) => {
+        fetch(url, {
+            method: 'PUT',
+            headers: {'Content-type' : 'application/json'},
+            body: JSON.stringify(updateCustomer)
+        })
+        .then(_ => {
+            setMsg("Customer updated");
+            setOpen(true);
+            fetchCustomers()
+        })
+        .catch(err => console.log(err))
+    }
+
+    const addTraining = training => {
+        fetch('https://customerrest.herokuapp.com/api/trainings',
+        {
+            method: 'POST',
+            headers: {'Content-type' : 'application/json'},
+            body: JSON.stringify(training)
+        }
+        )
+        .then(_ => fetchTrainings())
+        .catch(err => console.error(err))
+    }
+
     const columns = [
         {field: 'firstname', sortable: true, filter: true},
         {field: 'lastname', sortable: true, filter: true},
@@ -71,8 +108,24 @@ function Customerlist() {
             sortable: false, 
             filter: false,
             width: 120,
-            field: '_links.self.href', 
+            field: 'links.0.href', 
             cellRendererFramework: params => <Button variant="outlined" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteCustomer(params.value)}>Delete</Button>
+        },
+        {
+            headerName: '',
+            sortable: false, 
+            filter: false,
+            width: 120,
+            field: 'links.0.href',
+            cellRendererFramework: params => <EditCustomer editCustomer={editCustomer} customer={params} />
+        },
+        {
+            headerName: '',
+            sortable: false, 
+            filter: false,
+            width: 120,
+            field: 'links.0.href',
+            cellRendererFramework: params => <AddTraining addTraining={addTraining} training={params} />
         }
         
     ]
