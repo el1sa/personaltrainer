@@ -8,9 +8,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 function AddCustomer(props) {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-    const [customer, setCustomer] = React.useState({
+  const [customer, setCustomer] = React.useState({
         firstname: '',
         lastname: '',
         streetaddress: '',
@@ -20,7 +20,7 @@ function AddCustomer(props) {
         phone: ''
     })
 
-    const handleClickOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -41,8 +41,8 @@ function AddCustomer(props) {
         <div>
         <Button variant="outlined" onClick={handleClickOpen}>
         New Customer
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Customer</DialogTitle>
         <DialogContent>
           <TextField
@@ -113,7 +113,7 @@ function AddCustomer(props) {
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSave}>Save</Button>
         </DialogActions>
-      </Dialog>
+        </Dialog>
         </div>
     );
 }

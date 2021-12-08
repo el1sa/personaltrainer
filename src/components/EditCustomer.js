@@ -52,7 +52,7 @@ function EditCustomer(props) {
         <Button variant="outlined" onClick={handleClickOpen}>
         Edit 
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Customer</DialogTitle>
         <DialogContent>
           <TextField
@@ -123,7 +123,7 @@ function EditCustomer(props) {
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSave}>Save</Button>
         </DialogActions>
-      </Dialog>
+        </Dialog>
         </div>
     );
 }

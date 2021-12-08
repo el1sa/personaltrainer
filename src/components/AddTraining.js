@@ -6,18 +6,17 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-
 function AddTraining(props) {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-    const [training, setTraining] = React.useState({
+  const [training, setTraining] = React.useState({
         date: '',
         duration: '',
         activity: '',
-        customer: 'https://customerrest.herokuapp.com/api/trainings/{id}' // Mitä tähän tulee?
+        customer: props.customer 
     })
 
-    const handleClickOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -34,6 +33,11 @@ function AddTraining(props) {
       setTraining({...training, [e.target.name]: e.target.value })
   }
 
+
+  const inputDateChanged = e => {
+    setTraining({...training, date: new Date(e.target.value).toISOString().substring(0, 10) })
+}
+  
     return (
         <div>
         <Button variant="contained" onClick={handleClickOpen}>
@@ -42,15 +46,17 @@ function AddTraining(props) {
         <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Training</DialogTitle>
         <DialogContent>
-          <TextField
+
+        <TextField
             margin="dense"
             name="date"
             value={training.date}
-            onChange={inputChanged}
+            onChange= {inputDateChanged}
             label="Date"        
             fullWidth
             variant="standard"
           />
+        
           <TextField
             margin="dense"
             name="duration"
@@ -74,7 +80,7 @@ function AddTraining(props) {
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSave}>Save</Button>
         </DialogActions>
-      </Dialog>
+        </Dialog>
         </div>
     );
 }
