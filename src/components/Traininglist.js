@@ -33,7 +33,7 @@ function Traininglist() {
 
     const deleteTraining = url => {
         if (window.confirm('Sure you want to delete?')) {
-            fetch(url, {method: 'DELETE'})
+            fetch('https://customerrest.herokuapp.com/api/trainings/' + url, {method: 'DELETE'})
             .then(response => { 
         if(response.ok) {
             fetchTrainings()
@@ -72,7 +72,7 @@ function Traininglist() {
                 sortable: false, 
                 filter: false,
                 width: 120,
-                field: 'links.0.href', // etsi oikea vaihtoehto
+                field: 'id', // etsi oikea vaihtoehto
                 cellRendererFramework: params => <Button variant="outlined" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTraining(params.value)}>Delete</Button>
             }
     ]

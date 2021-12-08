@@ -14,7 +14,7 @@ function AddTraining(props) {
         date: '',
         duration: '',
         activity: '',
-        customer: 'https://customerrest.herokuapp.com/api/trainings/{id}' // Mitä tähän tulee?
+        customer: props.customer 
     })
 
     const handleClickOpen = () => {
@@ -34,6 +34,11 @@ function AddTraining(props) {
       setTraining({...training, [e.target.name]: e.target.value })
   }
 
+  const inputDateChanged = e => {
+    setTraining({...training, date: new Date(e.target.value).toISOString() })
+}
+
+
     return (
         <div>
         <Button variant="contained" onClick={handleClickOpen}>
@@ -46,7 +51,7 @@ function AddTraining(props) {
             margin="dense"
             name="date"
             value={training.date}
-            onChange={inputChanged}
+            onChange={inputDateChanged}
             label="Date"        
             fullWidth
             variant="standard"

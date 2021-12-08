@@ -84,6 +84,7 @@ function Customerlist() {
     }
 
     const addTraining = training => {
+        console.log(training)
         fetch('https://customerrest.herokuapp.com/api/trainings',
         {
             method: 'POST',
@@ -125,7 +126,7 @@ function Customerlist() {
             filter: false,
             width: 120,
             field: 'links.0.href',
-            cellRendererFramework: params => <AddTraining addTraining={addTraining} training={params} />
+            cellRendererFramework: params => <AddTraining addTraining={addTraining} customer={params.value} />
         }
         
     ]
