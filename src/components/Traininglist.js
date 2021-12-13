@@ -2,10 +2,10 @@ import React, { useState, useEffect, Children } from 'react';
 import {AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import { format } from 'date-fns'
 import { Snackbar } from '@mui/material';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import moment from 'moment';
 
 function Traininglist() {
     const [trainings, setTrainings] = useState([]);
@@ -25,9 +25,7 @@ function Traininglist() {
     const fetchTrainings = () => {
         fetch('https://customerrest.herokuapp.com/gettrainings')
         .then(response => response.json())
-        .then(data => 
-            setTrainings(data))
-    
+        .then(data => setTrainings(data))
         .catch(err => console.error(err))
     }
 
@@ -37,7 +35,7 @@ function Traininglist() {
             .then(response => { 
         if(response.ok) {
             fetchTrainings()
-            setMsg("Customer deleted");
+            setMsg("Training deleted");
             setOpen(true)
         }
         else
@@ -48,7 +46,9 @@ function Traininglist() {
     }
    
     const columns = [
-        {field: 'date', sortable: true, filter: true},
+        {field: 'date', sortable: true, filter: true, cellRenderer: (data) => {
+            return moment(data.createdAt).format('DD/MM/YYYY');
+        }},
         {field: 'duration', sortable: true, filter: true, width: 120},
         {field: 'activity', sortable: true, filter: true},
         {headerName: 'Customer',
@@ -72,7 +72,7 @@ function Traininglist() {
                 sortable: false, 
                 filter: false,
                 width: 120,
-                field: 'id', // etsi oikea vaihtoehto
+                field: 'id', 
                 cellRendererFramework: params => <Button variant="outlined" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTraining(params.value)}>Delete</Button>
             }
     ]

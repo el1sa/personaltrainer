@@ -5,7 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@material-ui/pickers": "^3.3.10",
     "@mui/icons-material": "^5.1.1",
+    "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.0.6",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +15,7 @@
     "ag-grid-community": "^26.1.0",
     "ag-grid-react": "^26.1.0",
     "date-fns": "^2.25.0",
+    "moment-timezone": "^0.5.34",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",

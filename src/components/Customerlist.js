@@ -47,8 +47,7 @@ function Customerlist() {
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(customer)
-        }
-        )
+        })
         .then(_ => fetchCustomers())
         .catch(err => console.error(err))
     }
@@ -90,8 +89,7 @@ function Customerlist() {
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(training)
-        }
-        )
+        })
         .then(_ => fetchTrainings())
         .catch(err => console.error(err))
     }
@@ -136,19 +134,19 @@ function Customerlist() {
         <div>
             <AddCustomer addCustomer={addCustomer}/>
         <div className="ag-theme-material" style={{marginTop: 20, height: 600, width: '80%', margin: 'auto'}}>
-        <AgGridReact 
-            rowData={customers}
-            columnDefs={columns}
-            pagination={true}
-            paginationPageSize={10}
-            suppressCellSelection={true}
-        />
-        <Snackbar 
-            open={open}
-            message={msg}
-            autoHideDuration={3000}
-            onClose={handleClose}
-        />
+            <AgGridReact 
+                rowData={customers}
+                columnDefs={columns}
+                pagination={true}
+                paginationPageSize={10}
+                suppressCellSelection={true}
+            />
+            <Snackbar 
+                open={open}
+                message={msg}
+                autoHideDuration={3000}
+                onClose={handleClose}
+            />
         </div>
         </div>
     );
