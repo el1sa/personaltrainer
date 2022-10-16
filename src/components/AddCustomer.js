@@ -11,14 +11,14 @@ function AddCustomer(props) {
   const [open, setOpen] = React.useState(false);
 
   const [customer, setCustomer] = React.useState({
-        firstname: '',
-        lastname: '',
-        streetaddress: '',
-        postcode: '',
-        city: '',
-        email: '',
-        phone: ''
-    })
+    firstname: '',
+    lastname: '',
+    streetaddress: '',
+    postcode: '',
+    city: '',
+    email: '',
+    phone: ''
+  })
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,28 +29,28 @@ function AddCustomer(props) {
   };
 
   const handleSave = () => {
-      props.addCustomer(customer);
-      handleClose();
+    props.addCustomer(customer);
+    handleClose();
   }
 
   const inputChanged = e => {
-      setCustomer({...customer, [e.target.name]: e.target.value })
+    setCustomer({ ...customer, [e.target.name]: e.target.value })
   }
 
-    return (
-        <div>
-        <Button variant="outlined" onClick={handleClickOpen}>
-        New Customer
-        </Button>
-        <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Customer</DialogTitle>
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        New Customer TEST
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>New Customer TEST</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
             name="firstname"
             value={customer.firstname}
             onChange={inputChanged}
-            label="Firstname"        
+            label="Firstname"
             fullWidth
             variant="standard"
           />
@@ -59,7 +59,7 @@ function AddCustomer(props) {
             name="lastname"
             value={customer.lastname}
             onChange={inputChanged}
-            label="Lastname"        
+            label="Lastname"
             fullWidth
             variant="standard"
           />
@@ -68,7 +68,7 @@ function AddCustomer(props) {
             name="streetaddress"
             value={customer.streetaddress}
             onChange={inputChanged}
-            label="Streetaddress"        
+            label="Streetaddress"
             fullWidth
             variant="standard"
           />
@@ -77,7 +77,7 @@ function AddCustomer(props) {
             name="postcode"
             value={customer.postcode}
             onChange={inputChanged}
-            label="Postcode"        
+            label="Postcode"
             fullWidth
             variant="standard"
           />
@@ -86,7 +86,7 @@ function AddCustomer(props) {
             name="city"
             value={customer.city}
             onChange={inputChanged}
-            label="City"        
+            label="City"
             fullWidth
             variant="standard"
           />
@@ -95,7 +95,7 @@ function AddCustomer(props) {
             name="email"
             value={customer.email}
             onChange={inputChanged}
-            label="Email"        
+            label="Email"
             fullWidth
             variant="standard"
           />
@@ -104,7 +104,7 @@ function AddCustomer(props) {
             name="phone"
             value={customer.phone}
             onChange={inputChanged}
-            label="Phone"        
+            label="Phone"
             fullWidth
             variant="standard"
           />
@@ -113,9 +113,9 @@ function AddCustomer(props) {
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSave}>Save</Button>
         </DialogActions>
-        </Dialog>
-        </div>
-    );
+      </Dialog>
+    </div>
+  );
 }
 
 export default AddCustomer;
